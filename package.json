@@ -1,0 +1,21 @@
+{
+	"name": "capmonster",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [
+		"capmonster",
+		"2captcha",
+		"recaptcha",
+		"captcha",
+		"captcha-service"
+	],
+	"author": "hanahaneull <hana@disroot.org>",
+	"license": "WTFPL",
+	"dependencies": {
+		"node-fetch": "^2.6.1"
+	}
+}
