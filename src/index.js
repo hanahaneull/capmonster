@@ -1,12 +1,14 @@
 const fetch = require('node-fetch');
 
 class capmonster {
-	constructor(clientKey = String, recognizingThreshold = 0) {
+	constructor(clientKey = '', recognizingThreshold = 0) {
 		this.clientKey = clientKey;
 		this.recognizingThreshold = recognizingThreshold;
 	}
 
 	async getBalance() {
+		if (typeof this.clientKey !== 'string' || !this.clientKey.length)
+			throw new Error('No clientKey provided or clientKey not String');
 		const response = await fetch('https://api.capmonster.cloud/getBalance', {
 			method: 'POST',
 			body: JSON.stringify({
@@ -18,7 +20,9 @@ class capmonster {
 		return json;
 	}
 
-	async createTask(task = {}, softId = 0, callbackUrl = null) {
+	async createTask(task = {}, softId = 0, callbackUrl = '') {
+		if (typeof this.clientKey !== 'string' || !this.clientKey.length)
+			throw new Error('No clientKey provided or clientKey not String');
 		const response = await fetch('https://api.capmonster.cloud/createTask', {
 			method: 'POST',
 			body: JSON.stringify({
@@ -33,7 +37,9 @@ class capmonster {
 		return json;
 	}
 
-	async solveReCaptchaV2(websiteURL, websiteKey) {
+	async solveReCaptchaV2(websiteURL = '', websiteKey = '') {
+		if (typeof this.clientKey !== 'string' || !this.clientKey.length)
+			throw new Error('No clientKey provided or clientKey not String');
 		const response = await fetch('https://api.capmonster.cloud/createTask', {
 			method: 'POST',
 			body: JSON.stringify({
@@ -50,7 +56,9 @@ class capmonster {
 		return json;
 	}
 
-	async solveImageCaptcha(base64) {
+	async solveImageCaptcha(base64 = '') {
+		if (typeof this.clientKey !== 'string' || !this.clientKey.length)
+			throw new Error('No clientKey provided or clientKey not String');
 		const response = await fetch('https://api.capmonster.cloud/createTask', {
 			method: 'POST',
 			body: JSON.stringify({
@@ -67,7 +75,9 @@ class capmonster {
 		return json;
 	}
 
-	async decodeReCaptchaV2(websiteURL, websiteKey) {
+	async decodeReCaptchaV2(websiteURL = '', websiteKey = '') {
+		if (typeof this.clientKey !== 'string' || !this.clientKey.length)
+			throw new Error('No clientKey provided or clientKey not String');
 		let solved = false;
 		const response = await fetch('https://api.capmonster.cloud/createTask', {
 			method: 'POST',
@@ -92,7 +102,9 @@ class capmonster {
 		}
 	}
 
-	async decodeImageCaptcha(base64) {
+	async decodeImageCaptcha(base64 = '') {
+		if (typeof this.clientKey !== 'string' || !this.clientKey.length)
+			throw new Error('No clientKey provided or clientKey not String');
 		let solved = false;
 		const response = await fetch('https://api.capmonster.cloud/createTask', {
 			method: 'POST',
@@ -118,6 +130,8 @@ class capmonster {
 	}
 
 	async getResult(taskid = 0) {
+		if (typeof this.clientKey !== 'string' || !this.clientKey.length)
+			throw new Error('No clientKey provided or clientKey not String');
 		const response = await fetch('https://api.capmonster.cloud/getTaskResult', {
 			method: 'POST',
 			body: JSON.stringify({

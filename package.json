@@ -1,21 +1,30 @@
 {
 	"name": "capmonster",
-	"version": "1.0.0",
-	"description": "",
+	"version": "0.0.1",
+	"description": "NodeJS wrapper for https://capmonster.cloud",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"debug": "node example/debugging.js"
 	},
 	"keywords": [
 		"capmonster",
 		"2captcha",
 		"recaptcha",
 		"captcha",
-		"captcha-service"
+		"captcha-service",
+		"anticaptcha",
+		"anti-captcha",
+		"captchasolver"
 	],
 	"author": "hanahaneull <hana@disroot.org>",
 	"license": "WTFPL",
 	"dependencies": {
 		"node-fetch": "^2.6.1"
+	},
+	"homepage": "https://github.com/hanahaneull/capmonster",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/hanahaneull/capmonster.git"
 	}
 }
