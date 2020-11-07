@@ -1,6 +1,6 @@
 {
 	"name": "capmonster",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "NodeJS wrapper for https://capmonster.cloud",
 	"main": "index.js",
 	"scripts": {
