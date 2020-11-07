@@ -129,14 +129,14 @@ class capmonster {
 		}
 	}
 
-	async getResult(taskid = 0) {
+	async getResult(taskId = 0) {
 		if (typeof this.clientKey !== 'string' || !this.clientKey.length)
 			throw new Error('No clientKey provided or clientKey not String');
 		const response = await fetch('https://api.capmonster.cloud/getTaskResult', {
 			method: 'POST',
 			body: JSON.stringify({
 				clientKey: this.clientKey,
-				taskId: taskid,
+				taskId: taskId,
 			}),
 		});
 		const json = await response.json();

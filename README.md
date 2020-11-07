@@ -86,6 +86,31 @@ Return
 }
 ```
 
+#### getResult(taskId)
+
+Get task result.
+
+``taskId`` : Task ID from create task method.
+
+```js
+const capmonster = require('capmonster');
+const captcha = new capmonster('API KEY');
+
+captcha.getResult(6969420).then((result) => {
+  console.log(result)
+});
+```
+Return (solution object are different each captcha type)
+```js
+{
+  errorId: 0,
+  errorCode: '',
+  errorDescription: null,
+  status: 'ready',
+  solution: { text: 'hwsrrc' }
+}
+```
+
 #### solveReCaptchaV2(websiteURL, websiteKey)
 
 Create new ReCaptchaV2 task.
