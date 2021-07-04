@@ -56,6 +56,27 @@ class capmonster {
 		return json;
 	}
 
+	async solveReCaptchaV3(websiteURL = '', websiteKey = '', minScore = '') {
+		if (typeof this.clientKey !== 'string' || !this.clientKey.length)
+			throw new Error('No clientKey provided or clientKey not String');
+		const response = await fetch('https://api.capmonster.cloud/createTask', {
+			method: 'POST',
+			body: JSON.stringify({
+				clientKey: this.clientKey,
+				task: {
+					type: 'RecaptchaV3TaskProxyless',
+					websiteURL: websiteURL,
+					websiteKey: websiteKey,
+					minScore: minScore,
+					pageAction: "myverify"
+				},
+			}),
+		});
+		const json = await response.json();
+
+		return json;
+	}
+
 	async solveImageCaptcha(base64 = '') {
 		if (typeof this.clientKey !== 'string' || !this.clientKey.length)
 			throw new Error('No clientKey provided or clientKey not String');
@@ -87,6 +108,35 @@ class capmonster {
 					type: 'NoCaptchaTaskProxyless',
 					websiteURL: websiteURL,
 					websiteKey: websiteKey,
+				},
+			}),
+		});
+		const json = await response.json();
+
+		while (!solved) {
+			await new Promise((resolve) => setTimeout(resolve, 2000));
+			const result = await this.getResult(json.taskId);
+			if (result.status == 'ready') {
+				solved = true;
+				return result;
+			}
+		}
+	}
+
+	async decodeReCaptchaV3(websiteURL = '', websiteKey = '', minScore = '') {
+		if (typeof this.clientKey !== 'string' || !this.clientKey.length)
+			throw new Error('No clientKey provided or clientKey not String');
+		let solved = false;
+		const response = await fetch('https://api.capmonster.cloud/createTask', {
+			method: 'POST',
+			body: JSON.stringify({
+				clientKey: this.clientKey,
+				task: {
+					type: 'RecaptchaV3TaskProxyless',
+					websiteURL: websiteURL,
+					websiteKey: websiteKey,
+					minScore: minScore,
+					pageAction: "myverify"
 				},
 			}),
 		});
