@@ -56,7 +56,7 @@ class capmonster {
 		return json;
 	}
 
-	async solveReCaptchaV3(websiteURL = '', websiteKey = '', minScore = '') {
+	async solveReCaptchaV3(websiteURL = '', websiteKey = '', minScore = '', myverify = '') {
 		if (typeof this.clientKey !== 'string' || !this.clientKey.length)
 			throw new Error('No clientKey provided or clientKey not String');
 		const response = await fetch('https://api.capmonster.cloud/createTask', {
@@ -68,7 +68,7 @@ class capmonster {
 					websiteURL: websiteURL,
 					websiteKey: websiteKey,
 					minScore: minScore,
-					pageAction: "myverify"
+					pageAction: myverify
 				},
 			}),
 		});
